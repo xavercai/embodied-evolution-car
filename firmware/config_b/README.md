@@ -1,18 +1,22 @@
-# Config B — N16R8 (reserved)
+# Config B — N16R8 (FFat)
 
-This directory is reserved for the extended-board firmware (ESP32-S3-N16R8, TCRT5000, FFat).
+Extended-board firmware: ESP32-S3-N16R8 (16 MB Flash + 8 MB PSRAM), TCRT5000 reflective sensor, FFat filesystem.
 
-## Current status
+## Files
 
-Config B **currently shares the single EXSIMP source** in `../config_a/OEETestFinal_v10_12_EXSIMP.ino`. There is no separate Config B build yet — the two boards differ only at flash time:
+| Path | Description |
+|---|---|
+| `OEETestFinal_v10_12_EXSIMP_N16R8_FFat.ino` | Frozen N16R8/FFat build (v10.12-EXSIMP). 2026-10-13: N16R8 swap + FFat migration, min retained generations 10 / max 100, L/R encoder ENCB pins completed. |
+| `partitions_16m.csv` | FFat partition table for the 16 MB module (app0 3 MB + FFat 12 MB). |
 
-| Item | Config A (baseline) | Config B (extended) |
+## How it differs from Config A
+
+| Item | Config A | Config B (this dir) |
 |---|---|---|
-| Board | ESP32-S3-M-4M (N4R2) | ESP32-S3-N16R8 |
-| Sensor | Sharp | TCRT5000 |
-| Sensor pins | GPIO4 / GPIO5 | GPIO1 / GPIO2 |
+| Board | ESP32-S3-M-4M | ESP32-S3-N16R8 |
 | Filesystem | SPIFFS | FFat |
+| Sensor | Sharp GP2Y0A21YK0F | TCRT5000 (AO analog out) |
+| IR pins | GPIO4 / GPIO5 | GPIO1 / GPIO2 |
+| Motor driver | DRV8833 | L298N |
 
-## When to place a dedicated source here
-
-Add a Config B-specific `.ino` (or split the shared core into `../shared/`) only if the two configurations diverge in source — for example a distinct sensor driver, an FFat-specific persistence path, or an N16R8-only memory layout (16 MB Flash + 8 MB PSRAM). Until then, keep the frozen EXSIMP source in `config_a/` as the single source of truth.
+The two builds share the same EXSIMP persistence core and behavior-rule engine; this `.ino` is the N16R8/FFat variant with the Config-B pin map and FFat mount logic. For the shared firmware invariants (packed structs, two-stage atomic writes, DATA-PRESERVED) see [`../README.md`](../README.md).

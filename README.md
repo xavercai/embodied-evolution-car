@@ -20,6 +20,22 @@ The project is a minimal, "three-no" (no-calibration, no-filtering, no-PID) **ob
 2. **The weak hypothesis is falsified.** "Specific sensor parameters directly determine specific behaviors" collapses to a *Simpson pseudo-correlation* once environmental confounds are removed.
 3. **Boundary:** when perceptual information bandwidth is degraded and the noise pin is polluted by on-chip Flash multiplexing, diversity survives but the speed–survival capability pricing becomes non-computable.
 
+## Figures
+
+The paper's core visual evidence, all from configuration B (N16R8 + TCRT5000):
+
+1. **Noise-source audit** — post-hoc hardware audit of the GPIO6 noise pin: the reading is clamped to the low band 0–423, not full-scale thermal noise, evidencing Flash-multiplexing pollution of the "floating" noise source.
+
+![Post-hoc hardware audit of GPIO6](figures/fig_noise_hist.png)
+
+2. **Novelty & rule count** — novelty "rise-then-plateau" and a non-degenerating rule count.
+
+![Novelty rise-then-plateau and non-degenerating rule count](figures/fig_novelty_rules.png)
+
+3. **Chaos anchoring** — left-wheel deceleration and the turn/reverse complementary axis.
+
+![Chaos anchoring behavior](figures/fig_anchoring.png)
+
 ## Hardware
 
 | | Config A (baseline) | Config B (extended) |
