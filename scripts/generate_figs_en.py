@@ -8,11 +8,15 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy import stats
 
-ROOT = r"c:\Users\ecaiji1\Documents\Thesis\OEE Test Data\oee_data10192\oee_data"
-OUT  = r"c:\Users\ecaiji1\Desktop\Defending Sketch\embodied-evolution-car\figures"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.join(REPO, "data", "oee_data10192", "oee_data")
+OUT  = os.path.join(REPO, "figures")
 os.makedirs(OUT, exist_ok=True)
 plt.rcParams["font.family"] = "DejaVu Sans"
 plt.rcParams["axes.unicode_minus"] = False
+# arXiv 的 PDF 处理管线不保留 Type 3 字体，必须嵌入 TrueType
+plt.rcParams["pdf.fonttype"] = 42
+plt.rcParams["ps.fonttype"] = 42
 
 oe = pd.read_csv(os.path.join(ROOT, "spiffs_raw", "oe_history.csv"), comment="#")
 oe = oe[oe.generation <= 10]

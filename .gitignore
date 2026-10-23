@@ -37,5 +37,8 @@ desktop.ini
 # --- Versioned draft backups (keep out of the public repo) ---
 *_backup_*
 
+# --- Build artifacts (arXiv submission package etc.) ---
+build/
+
 # --- MS Office lock files ---
 ~$*

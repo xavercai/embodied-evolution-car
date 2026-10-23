@@ -1,10 +1,10 @@
 # Embodied Evolution Car
 
-**Physical Structure as Algorithm** — an open experimental platform and dataset for studying how the physical body of a robot constrains and shapes the trajectory of open-ended behavioral evolution.
+**The Physical Riverbed Hypothesis** — an open experimental platform and dataset for studying how the physical body of a robot constrains and shapes the trajectory of open-ended behavioral evolution.
 
 This repository accompanies the paper:
 
-> *Physical Structure as Algorithm: Structural Boundaries and Cross-Hardware Validation of an Embodied Evolution System under Extreme Constraints*
+> *The Physical Riverbed Hypothesis: Structural Boundaries and Cross-Hardware Validation of an Embodied Evolution System under Extreme Constraints*
 
 [arXiv preprint](#) · [Paper (LaTeX)](paper/main.tex) · [Figures](figures/)
 
@@ -66,7 +66,7 @@ If you use this work, please cite the accompanying paper (bibtex entry will be a
 
 ```bibtex
 @article{physcalcar2026,
-  title   = {Physical Structure as Algorithm: Structural Boundaries and Cross-Hardware Validation of an Embodied Evolution System under Extreme Constraints},
+  title   = {The Physical Riverbed Hypothesis: Structural Boundaries and Cross-Hardware Validation of an Embodied Evolution System under Extreme Constraints},
   author  = {Cai, Jiyong},
   year    = {2026},
   note    = {arXiv preprint}
@@ -78,6 +78,21 @@ If you use this work, please cite the accompanying paper (bibtex entry will be a
 1. Read [`paper/main.tex`](paper/main.tex) for the full argument and results.
 2. Re-generate the figures with `python scripts/generate_figs_en.py`.
 3. Firmware and raw data are documented in [`firmware/README.md`](firmware/README.md) and [`data/README.md`](data/README.md) respectively.
+
+## Submitting to arXiv
+
+arXiv requires the TeX source, not a rendered PDF. Build the submission bundle with:
+
+```bash
+python scripts/build_arxiv_package.py
+```
+
+This writes `build/arxiv/arxiv_submission.tar.gz`, containing `main.tex` at the archive root and the three figures under `figures/`. The script also validates the bundle against arXiv's automatic-processing failure modes (non-relative paths, `\include`, unresolvable figures, dangling `\ref`, leftover TeX comments, Type 3 fonts) and aborts if any check fails.
+
+Two source-level conventions exist for arXiv compatibility and are enforced by the build:
+
+- `paper/main.tex` locates figures via `\graphicspath{{../figures/}{figures/}{}}` so the paper compiles in place; the bundle rewrites this to `{{figures/}{}}`, since arXiv extracts the archive to a flat directory and `../` paths do not resolve.
+- Figures are generated with `pdf.fonttype = 42` (embedded TrueType). Matplotlib's default Type 3 fonts are rejected by arXiv's PDF pipeline.
 
 ## License
 
