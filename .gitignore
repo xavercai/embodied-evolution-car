@@ -36,3 +36,6 @@ desktop.ini
 
 # --- Versioned draft backups (keep out of the public repo) ---
 *_backup_*
+
+# --- MS Office lock files ---
+~$*

@@ -1,0 +1,2 @@
+index,sensorLeft,sensorRight,motorLeftPWM,motorRightPWM,durationMs,timestamp_ms,rawNoiseL,rawNoiseR
+0,-54,-154,-46,-83,0,249,376,309

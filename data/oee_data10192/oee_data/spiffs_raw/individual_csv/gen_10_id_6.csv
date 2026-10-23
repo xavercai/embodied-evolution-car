@@ -1,0 +1,12 @@
+# individual_meta: survival_time=25060 distance_ticks=0 noveltyScore=0.288694 obstacleThreshold=2138 clearThreshold=921 encoderDiffThreshold=70 encoderDiffMin=13 wheelSpinThreshold=39 wheelStopThreshold=10 stuckWindowSize=17 chaosNoiseAmplifier=144 chaosMinPwm=77 chaosTimeoutMs=5562 chaosForceTimeoutMs=5308 hasChaosRules=1 chaosRuleCount=8 chaosRulesStartIndex=2
+ruleIndex,condType,condValue,condOp,motorL,motorR,durationMs,nextRule,isChaosRule
+0,3,2156,0,114,-173,683,2,0
+1,7,0,0,211,-83,2000,1,0
+2,6,0,1,-19,-19,50,0,1
+3,6,0,1,127,112,50,0,1
+4,6,0,1,127,127,50,0,1
+5,6,0,1,48,28,50,0,1
+6,6,0,1,127,92,50,0,1
+7,6,0,1,127,96,50,0,1
+8,6,0,1,127,104,50,0,1
+9,6,0,1,127,92,50,0,1

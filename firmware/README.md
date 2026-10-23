@@ -2,13 +2,13 @@
 
 This directory holds the ESP32 firmware for both hardware configurations. The source is maintained separately and imported here for release.
 
-## Files to place here
+## Files
 
 | Path | Description |
 |---|---|
-| `config_a/` | Baseline (ESP32-S3-M-4M, Sharp sensor, SPIFFS/EXSIMP) firmware |
-| `config_b/` | Extended (ESP32-S3-N16R8, TCRT5000, FFat) firmware |
-| `shared/`  | Novelty-search core, behavior-rule engine, chaos intervention |
+| `config_a/OEETestFinal_v10_12_EXSIMP.ino` | Frozen baseline firmware (ESP32-S3-M-4M, Sharp, SPIFFS/EXSIMP) — the sole release source |
+
+Config B (ESP32-S3-N16R8, TCRT5000, FFat) **shares this single source file**; it differs only at flash time (FFat partition table, `GPIO1/2` pin assignment). There is no separate Config B build, and `shared/` is not split out — the novelty-search core, behavior-rule engine, and chaos intervention all live in the one `.ino`.
 
 ## Firmware invariants (required by the analysis)
 

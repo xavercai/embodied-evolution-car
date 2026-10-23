@@ -6,14 +6,24 @@ Experimental datasets for the paper. Raw binary exports are large; keep them und
 
 ```
 oee_data_<id>/
-├── spiffs_raw/
-│   ├── oe_history.csv          # per-individual metadata: novelty, survival, rule count
-│   ├── chaos_history.csv       # chaos-snapshot history (may be binary-polluted in some batches)
-│   └── individual_csv/         # per-individual behavior-rule tables (gen_<g>_id_<i>.csv)
-└── csv_converted/
-    ├── nova_gen/               # per-generation behavioral descriptors
-    ├── frame_logs/             # decompressed 11-byte frame logs
-    └── chaos_snapshots/        # per-frame chaos snapshots (rawNoiseL/R, sensor, PWM)
+└── oee_data/                    # root inside the source zip
+    ├── data_summary.txt         # v5.8 pipeline report: SPIFFS/RAM download + BIN conversion checks
+    ├── spiffs_raw/
+    │   ├── oe_history.csv       # per-individual metadata: novelty, survival, rule count
+    │   ├── chaos_history.csv    # chaos-snapshot history (may be binary-polluted in some batches)
+    │   ├── individual_csv/      # per-individual behavior-rule tables (gen_<g>_id_<i>.csv)
+    │   ├── frame_bin/           # raw 11-byte compressed frame logs
+    │   ├── chaos_snap_bin/      # raw per-frame chaos snapshot binaries
+    │   ├── nova_gen_bin/        # per-generation descriptor binaries
+    │   ├── pop_bin/             # population-state binaries
+    │   └── chaos_record_csv/    # per-record chaos CSV
+    ├── csv_converted/
+    │   ├── nova_gen/            # per-generation behavioral descriptors
+    │   ├── frame_logs/          # decompressed 11-byte frame logs
+    │   ├── chaos_snapshots/     # per-frame chaos snapshots (rawNoiseL/R, sensor, PWM)
+    │   ├── populations/         # per-generation population tables (+ *_rules.csv)
+    │   └── validation_report.json
+    └── ram_data/                # RAM snapshot at download time (schema/status/file_list + snapshot CSVs)
 ```
 
 ## Known acquisition defects
