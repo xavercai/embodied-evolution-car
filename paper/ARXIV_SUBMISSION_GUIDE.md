@@ -5,6 +5,9 @@
 > 依据：arXiv 官方文档（info.arxiv.org）与 2026-01-21 官方背书政策更新公告。
 > **当前状态**：账号已注册完成（`xavercai` / `xavercai@outlook.com` / Independent Researcher），
 > 已创建投稿 8272289（未完成状态，2026-11-06 到期）。**下一步只剩背书。**
+>
+> 配套文件：`ENDORSEMENT_EMAILS.md`（给 Yue Xie、Stefanos Nikolaidis 的两封英文请求信，已写好，
+> 拿到 endorsement code 后填入即可发送）
 
 ---
 
@@ -216,6 +219,66 @@ Independent Researcher, Beijing, China
 - **Organization email**：填与 Organization 关联的邮箱；若选 Independent，填你的个人邮箱即可
 - **Password**：≥8 位，必须含下划线 `_`，其余只允许字母数字
 - **Username**：一旦设定不可更改
+
+---
+
+## 四点五、排查：还没收到背书请求邮件
+
+**结论先行：这不是故障，而是流程还没走到触发点。**
+
+arXiv 官方文档对背书请求邮件的触发条件写得很明确：
+
+> "Start a new submission and select the category you wish to submit to.
+> Check your email for an **endorsement request email**."
+
+即：**背书请求邮件是在投稿流程走到"选择分类"这一步时，由系统自动发出的**，而不是注册账号时发的，也不是点"START NEW SUBMISSION"就发的。
+
+而当前投稿 8272289 的状态是 **incomplete（未完成）**。arXiv 投稿系统 v1.5 的完整步骤是：
+
+```
+Prepare Files（上传）→ Check Files → Accept and Continue
+    → 编译 → Preview your PDF → Continue
+    → Metadata 页（在这里填标题/摘要/作者/分类）
+    → Submit Article
+```
+
+**Metadata 页的分类选择步骤才是触发点**。你的投稿停在"未完成"，说明大概率还没提交到那一步，因此邮件从未发出。
+
+### 排查清单（按顺序做）
+
+| # | 检查 | 做法 | 判断 |
+|---|---|---|---|
+| 1 | **投稿是否走到 Metadata 页** | 回到 arXiv 用户页 → 点投稿 8272289 的 **update** → 走完文件检查 → Continue → 进 Metadata 页 | 若之前就停在这里 → 这就是没收到邮件的原因，继续走完即可触发 |
+| 2 | **分类是否真的选到 cs 域** | 在 Metadata 页把主分类设为 `cs.AI` 或 `cs.RO`（同属 cs 背书域），次分类选另一个 | 选完点 Continue，系统当场发信 |
+| 3 | **垃圾邮件 / 其他文件夹** | outlook.com 网页版检查：垃圾邮件、**"其他"（Other）**、**"聚焦"（Focused）** 三个分类都要看；搜索 `arxiv` / `endorse` 关键词 | Outlook 网页版默认把非通讯邮件归入"其他"，很容易漏看 |
+| 4 | **是否用了其他邮箱** | 确认 arXiv 账号邮箱仍是 `xavercai@outlook.com`（用户页顶部 E-mail 一行）。若曾改成大众汽车邮箱，信就发到那边了 | 与本机 Outlook 一致：大众汽车账号本地 OST 中未发现任何 arXiv 背书邮件痕迹 |
+| 5 | **等待时间** | arXiv 的自动发信是即时的，但 Outlook 对批量/自动发件人有延迟过滤 | 若第 1、2 步确认已触发，等 24 小时仍无 → 走第 4 节"联系 arXiv" |
+
+### 第 1 步的具体操作（最可能的解法）
+
+1. 登录 arXiv → 用户页 → 找到 `submit/8272289` → 点 **update**
+2. "Prepare Files" 页点 **Check Files** → 确认 Top-Level TeX file 是 `main.tex` → **Accept and Continue**
+3. 等编译完成 → **Continue**
+4. **Metadata 页**：填标题、摘要、作者（`Jiyong Cai`）、**主分类 `cs.AI`**、次分类 `cs.RO` → **Continue**
+5. 这一步系统会立刻把背书请求邮件发到账号邮箱（正文含 6 位 endorsement code 和 `https://arxiv.org/auth/endorse?x=XXXXXX` 链接）
+6. 回到用户页点 **Unsubmit** 也可以——官方说明 unsubmit 会把投稿退回 incomplete 状态以便修改
+
+> 提交包已就绪，直接用 `build\arxiv\arxiv_submission.tar.gz`，主文件选 `main.tex`。若上传阶段报错，指南第四章的构建校验规则可对照排查。
+
+### 如果第 3 步确认邮件已到但被误判
+
+- 在 Outlook 网页版把 `arxiv.org` 加入**安全发件人**，避免后续背书人回复被误判为垃圾邮件
+- 搜索范围要包含"所有文件夹"，不只是收件箱
+
+### 如果始终收不到（超过 24 小时）
+
+arXiv 官方为背书问题设有专门渠道：
+
+- **Endorsement Policy Feedback Form**（官方在 2026-01-21 公告中明确推荐）：https://blog.arxiv.org/2026/01/21/attention-authors-updated-endorsement-policy/
+- **用户支持门户**：https://support.arxiv.org/
+- 邮件：`help@arxiv.org`（官方提示：若没收到自动回信，多半是被垃圾邮件过滤器吃了）
+
+> 官方明确表态：**"arXiv staff cannot waive endorsement requirements or provide a personal endorsement for authors."** 工作人员不能豁免背书要求，也不能替你背书。所以求助渠道的作用是排查邮件投递故障，而不是走捷径。这点要有预期。
 
 ---
 
