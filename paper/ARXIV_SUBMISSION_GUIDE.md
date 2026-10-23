@@ -125,6 +125,33 @@ cs 域的背书域是 `cs`（整个计算机科学大域），`cs.AI` 和 `cs.RO
 
 > **最高优先级：Yue Xie（2603.19582《Evolving Embodied Intelligence: GNN-Driven Co-Design of Morphology and ...》）与 Stefanos Nikolaidis（2603.12510）**——两人的近期工作与本文"物理身体作为算法约束"的论点几乎同题，是最容易理解你研究意义的读者。
 
+### 3.1.1 已实测的背书资格（arXiv API 逐人核验，2026-10-23）
+
+对候选论文的**全部作者**逐一统计 cs 域内"3 个月至 5 年前提交"的论文数，达标者（≥3 篇）才有背书资格：
+
+| 论文 | 达标作者（含 cs 域有效论文数） | 不达标 |
+|---|---|---|
+| 2603.19582 *Evolving Embodied Intelligence* | Jianqiang Wang 30、**Yue Xie 17**、Xiaohan Wei 19、Alvaro Serra-Gomez 9、Shuaiqun Pan 7 | — |
+| 2603.12510 *Red-Teaming VLA Models via QD Prompt Generation* | **Stefanos Nikolaidis 39**、Daniel Seita 34、Henry Chen 27、Bryon Tjanaka 10、Akanksha Saran 10、Varun Bhatt 9、Minjune Hwang 7、Ya-Chuan Hsu 6、Shihan Zhao 5、**Siddharth Srikanth 3** | Freddie Liang 1、Aaquib Tabrez 2 |
+| 2604.22551 *QDTraj* | **Stéphane Doncieux 21**、Mahdi Khoramshahi 15、Faiz Ben Amar 9、Louis Annabi 7、Mathilde Kappel 4 | — |
+| 2502.15937 *Emergent Robot Swarm Behaviors* | Daniel S. Brown 35、Cameron Nowzari 13、**Connor Mattson 11**、Ricardo Vega 8、Daniel S. Drew 5 | Varun Raveendra 2 |
+| 2410.02319 *QDGset* | **Johann Huber 8**、François Hélénon 7、Mathilde Kappel 4、Ignacio de Loyola Páez-Ubieta 5 | — |
+
+> **注意**：arXiv 摘要页的作者栏会截断（2603.12510 只显示前 10 位，Nikolaidis 是第 12 位作者）。**判断背书资格一定要点摘要页底部的 "Which authors of this paper are endorsers?" 链接**，不能只看作者栏。
+>
+> 另外，arXiv 的资格判定基于"是否已注册为该论文作者"，若背书人未认领论文，可通过 Claim Ownership / Claim Authorship 补上。
+
+### 3.1.2 已发放的背书 code
+
+| 项 | 值 |
+|---|---|
+| code | **Q8YMWW** |
+| 链接 | `https://arxiv.org/auth/endorse?x=Q8YMWW` |
+| 绑定分类 | cs.RO |
+| 发出时间 | 2026-10-23 |
+
+> **一次背书即可覆盖 cs.AI。** arXiv 按 endorsement category 计（官方："At least one positive endorsement is required per endorsement category"），而 cs.RO 的背书域涵盖全部 41 个 cs.* 分类（背书请求邮件里列出的 cs.AI、cs.AR、cs.CC、…、cs.RO、cs.SC、cs.SD、cs.SE、cs.SI、cs.SY 等）。因此 `Q8YMWW` 一次背书同时解锁 cs.RO 与 cs.AI，**不需要为两个分类各要一次**。
+
 ### 3.2 获取背书人的联系方式（官方流程）
 
 1. 登录 arXiv（必须登录，未登录时 `/auth/show-endorsers/<id>` 返回 401）
@@ -195,16 +222,25 @@ Independent Researcher, Beijing, China
 | 1 | 申请 SPF+DMARC 完整的邮箱 | ✅ `xavercai@outlook.com` |
 | 2 | 注册 arXiv，Organization 填 `Independent` | ✅ 已注册，用户名 `xavercai` |
 | 3 | 选分类创建投稿（投稿 8272289 已建，未完成态） | ✅ 已创建，2026-11-06 到期 |
+| 4 | **拿到 6 位 endorsement code** | ✅ **`Q8YMWW`**（绑定 cs.RO，一次背书覆盖 cs.AI） |
 
 ### 待完成（关键路径全在这）
 
 | 步骤 | 动作 | 说明 |
 |---|---|---|
-| 4 | **拿到背书请求邮件中的 6 位 endorsement code** | code 有效期有限，收到后立即行动。检查 `xavercai@outlook.com` 收件箱与垃圾箱 |
-| 5 | 按 3.1 顺序联系 1-2 位候选背书人 | 从 Yue Xie / Stefanos Nikolaidis 开始，附 GitHub 链接 |
+| 5 | 按 3.1 顺序联系 1-2 位候选背书人 | 从 Yue Xie（2603.19582）开始，邮件已写好在 `ENDORSEMENT_EMAILS.md` |
 | 6 | 背书通过后完成投稿 8272289 | 上传 `build/arxiv/arxiv_submission.tar.gz`，主文件选 `main.tex` |
 | 7 | 许可选第 5 项 `arXiv.org perpetual, non-exclusive license` | 不可撤销，选它对 IEEE/ACM/Springer 零冲突 |
 | 8 | 拿到 arXiv ID 后回填 README 与 CITATION.bib | 发给我即可，我帮你改并推送 |
+
+### 分类建议（已按背书 code 调整）
+
+code 绑定的是 **cs.RO**，且 cs.RO 背书域覆盖全部 cs.* 分类，因此：
+
+- **主分类 `cs.RO`**（与 code 一致，避免二次触发背书请求）
+- **副分类 `cs.AI`**（同域，已被同一次背书覆盖，无需额外背书）
+
+> 论文主题（ESP32 具身机器人、novelty search、进化行为）本就更偏 cs.RO。若你仍想以 cs.AI 为主，也可行——同一次背书同样解锁，只需在 Metadata 页改选分类，不会再触发新的 code。
 
 ### 关于投稿 8272289
 
