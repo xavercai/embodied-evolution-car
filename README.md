@@ -97,3 +97,5 @@ Two source-level conventions exist for arXiv compatibility and are enforced by t
 ## License
 
 [MIT](LICENSE) unless otherwise noted. Experimental data may carry its own terms — see [`data/README.md`](data/README.md).
+
+The paper is posted on arXiv under the **arXiv.org perpetual, non-exclusive license**, which leaves copyright with the author and avoids conflict with the exclusive copyright transfer required by IEEE/ACM/Springer publications. The repository contents (firmware, data, scripts) remain under MIT and are reusable independently of the paper's license.
